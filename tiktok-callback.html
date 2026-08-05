@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>GSA Video Autopost — TikTok Auth</title>
+</head>
+<body>
+<h1>TikTok авторизация завершена</h1>
+<p>Скопируйте значение <b>code</b> ниже и вставьте его в терминал, где запущен <code>get_tiktok_token.py</code>.</p>
+<pre id="out">Читаю параметры...</pre>
+<script>
+const params = new URLSearchParams(window.location.search);
+const code = params.get('code');
+const state = params.get('state');
+const error = params.get('error');
+const errorDescription = params.get('error_description');
+const out = document.getElementById('out');
+if (error) {
+  out.textContent = 'error: ' + error + '\nerror_description: ' + (errorDescription || '');
+} else if (code) {
+  out.textContent = 'code: ' + code + '\nstate: ' + (state || '');
+} else {
+  out.textContent = 'Параметры code/error не найдены в URL.';
+}
+</script>
+</body>
+</html>
